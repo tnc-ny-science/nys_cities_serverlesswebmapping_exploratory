@@ -23,7 +23,7 @@
 
     <script>
       // initalize leaflet map
-      var map = L.map('map').setView([40.703312, -73.97968], 10);
+      var map = L.map('map').setView([40.703312, -73.97968], 12).setMaxZoom(22);
 
 
       // add OpenStreetMap basemap
@@ -49,7 +49,7 @@ var layer = protomaps.leafletLayer({url:'nyc_practicalcanopy.pmtiles'})
 let PAINT_RULES = [
     {
         dataLayer:"nyc_practicalcanopy",
-        symbolizer:new protomaps.PolygonSymbolizer({fill:"steelblue"})
+        symbolizer:new protomaps.PolygonSymbolizer({fill:"#0096FF"})
     } 
 ];
 

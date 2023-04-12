@@ -4,6 +4,9 @@ Repo for some exploratory/experimental serverless webmapping work. This is inten
 Questions about this work should be directed to Mike Treglia, Lead Scientist of the NY Cities Program at The Nature Conservancy at [michael.treglia@tnc.org](mailto:michael.treglia@tnc.org)
 
 ## Vector Example using PMTiles
+
+***[Live Example Here](https://tnc-ny-science.github.io/nys_cities_serverlesswebmapping_exploratory/leaflet_PMTiles_NYCPracticalCanopy/)*** *(subject to change)*
+
 This example shows a full dataset of the estimated opportunity for new tree canopy in NYC. The vector dataset displayed is the actual practical canopy data layer availble from [Zenodo](https://zenodo.org/record/6547492), described in a [*Frontiers in Sustainable Cities* paper](https://www.frontiersin.org/articles/10.3389/frsc.2022.944823/full). 
 
 This work relies on the [**Protomaps**](https://protomaps.com/) project, in particular, an associated format for storing tiled vector data, [PMTiles](https://protomaps.com/docs/pmtiles). Descriptions of how this PMTiles can be used is documented at the links above and in the associated GitHub repository.
@@ -21,6 +24,10 @@ In this work, key steps involved so far have been:
     
 
 ## Raster Example using Cloud Optimized Geotiffs
+
+***[Live Example Here](https://tnc-ny-science.github.io/nys_cities_serverlesswebmapping_exploratory/leaflet_COG_NYCLandcover2017/)***  *(subject to change)*
+
+
 
 This example shows some of the [high resolution land cover data for NYC from 2017](https://data.cityofnewyork.us/Environment/Land-Cover-Raster-Data-2017-6in-Resolution/he6d-2qns), initially for a small area. 
 

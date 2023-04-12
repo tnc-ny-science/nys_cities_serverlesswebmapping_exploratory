@@ -23,14 +23,14 @@
 
     <script>
       // initalize leaflet map
-      var map = L.map('map').setView([40.703312, -73.97968], 12).setMaxZoom(25);
+      var map = L.map('map').setView([40.703312, -73.97968], 10);
 
 
       // add OpenStreetMap basemap
       var imagery2018 = L.tileLayer('https://maps.nyc.gov/xyz/1.0.0/photo/2018/{z}/{x}/{y}.png8', {
         attribution: 'imagery from <a href="https://maps.nyc.gov/tiles/">NYC DoITT</a>',
         minNativeZoom: 11,
-        maxNativeZoom: 25,
+        maxNativeZoom: 19,
         subdomains: '1234',
         bounds: L.latLngBounds([39.3682, -75.9374], [42.0329, -71.7187])
         }).addTo(map);

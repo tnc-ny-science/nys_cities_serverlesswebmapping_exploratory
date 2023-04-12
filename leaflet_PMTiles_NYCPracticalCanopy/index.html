@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"/>
+    <style>
+      #map {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/georaster"></script>
+    <script src="https://unpkg.com/georaster-layer-for-leaflet"></script>
+	<script src="https://unpkg.com/protomaps@1.22.0/dist/protomaps.min.js"></script>
+
+    <script>
+      // initalize leaflet map
+      var map = L.map('map').setView([40.703312, -73.97968], 12).setMaxZoom(25);
+
+
+      // add OpenStreetMap basemap
+      var imagery2018 = L.tileLayer('https://maps.nyc.gov/xyz/1.0.0/photo/2018/{z}/{x}/{y}.png8', {
+        attribution: 'imagery from <a href="https://maps.nyc.gov/tiles/">NYC DoITT</a>',
+        minNativeZoom: 11,
+        maxNativeZoom: 25,
+        subdomains: '1234',
+        bounds: L.latLngBounds([39.3682, -75.9374], [42.0329, -71.7187])
+        }).addTo(map);
+		var labels = L.tileLayer('https://maps{s}.nyc.gov/xyz/1.0.0/carto/label/{z}/{x}/{y}.png8', {
+			attribution: 'basemap by <a href="https://maps.nyc.gov/tiles/">NYC DoITT</a>',
+			minNativeZoom: 11,
+			maxNativeZoom: 19,
+			subdomains: '1234',
+			bounds: L.latLngBounds([39.3682, -75.9374], [42.0329, -71.7187])
+		}).addTo(map);
+
+ /*
+var layer = protomaps.leafletLayer({url:'nyc_practicalcanopy.pmtiles'})
+    layer.addTo(map)
+*/
+let PAINT_RULES = [
+    {
+        dataLayer:"nyc_practicalcanopy",
+        symbolizer:new protomaps.PolygonSymbolizer({fill:"steelblue"})
+    } 
+];
+
+let LABEL_RULES = []; // ignore for now
+
+protomaps.leafletLayer({
+    url:'https://public-webmapping-experimental.s3.amazonaws.com/nyc_practicalcanopy.pmtiles',
+    paint_rules:PAINT_RULES,
+    label_rules:LABEL_RULES
+}).addTo(map) 
+
+		
+</script>

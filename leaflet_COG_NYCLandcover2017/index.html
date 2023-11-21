@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@latest/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"/>
     <style>
       #map {
         bottom: 0;
@@ -15,11 +15,12 @@
   </head>
   <body>
     <div id="map"></div>
-    <script src="https://unpkg.com/leaflet@latest/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/proj4"></script>
     <script src="https://unpkg.com/georaster"></script>
     <script src="https://unpkg.com/georaster-layer-for-leaflet"></script>
     <script>
-      // initalize leaflet map
+       // initalize leaflet map
       var map = L.map('map').setView([40.703312, -73.97968], 12).setMaxZoom(22);
 
 
@@ -38,55 +39,45 @@
 			bounds: L.latLngBounds([38.3682, -75.9374], [43.0329, -71.7187])
 		}).addTo(map);
 		
-/*
-		basemap.addTo(map);	
-		labels.addTo(map);
-*/
+		var url_to_geotiff_file = "https://public-webmapping-experimental.s3.amazonaws.com/NYC_2017_LiDAR_LandCover_cog_20231117_4326.tif";
 
-       // var url_to_geotiff_file = "sample_4326_cog.tif";
-        var url_to_geotiff_file = "https://public-webmapping-experimental.s3.amazonaws.com/sample_4326_cog.tif";
-	  //var url_to_geotiff_file = "NYC_2017_LiDAR_LandCover_COG_4326.tif";
+	  //var url_to_geotiff_file = "NYC_2017_LiDAR_LandCover_cog_20231117_4326.tif";
 
-      fetch(url_to_geotiff_file)
-        .then(response => response.arrayBuffer())
-        .then(arrayBuffer => {
-          parseGeoraster(arrayBuffer).then(georaster => {
-            console.log("georaster:", georaster);
+      parseGeoraster(url_to_geotiff_file).then(georaster => {
+        console.log("georaster:", georaster);
 
-            /*
-                GeoRasterLayer is an extension of GridLayer,
-                which means can use GridLayer options like opacity.
-                Just make sure to include the georaster option!
-                http://leafletjs.com/reference-1.2.0.html#gridlayer
-            */
-            var layer = new GeoRasterLayer({
-                georaster: georaster,
-                opacity: 0.7,
-				pixelValuesToColorFn: 
+        /*
+            GeoRasterLayer is an extension of GridLayer,
+            which means can use GridLayer options like opacity.
+
+            Just make sure to include the georaster option!
+
+            http://leafletjs.com/reference-1.2.0.html#gridlayer
+        */
+        var layer = new GeoRasterLayer({
+            attribution: "City of New York",
+            georaster: georaster,
+            opacity: 0.5,
+            resolution: 128,
+            pixelValuesToColorFn: 
 					function(pixelValues){
 						var pixelValue = pixelValues[0];
 						
 						if (pixelValue === 1) return 'green';
 						if (pixelValue === 2) return 'lightgreen';
 						if (pixelValue === 3) return 'lightbrown';
-						if (pixelValue === 4) return 'blue';
+						if (pixelValue === 4) return '';
 						if (pixelValue === 5) return 'grey';						
 						if (pixelValue === 6) return 'black';
 						if (pixelValue === 7) return 'darkgrey';
 						if (pixelValue === 8) return 'purple';
 						}
-						//values => values[0] === 1 ? 'green' :  null,
-				//pixelValuesToColorFn: values => values[0] === 2 ? 'lightgreen' :  null,
-
-            });
-            layer.addTo(map);
-			
-			//var layer = new GeoRasterLayer({georaster}).addTo(map);
-			
-            //map.fitBounds(layer.getBounds());
-
         });
-      });
+        layer.addTo(map);
+
+        //map.fitBounds(layer.getBounds());
+
+    });
 
     </script>
   </body>

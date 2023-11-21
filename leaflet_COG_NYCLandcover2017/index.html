@@ -39,7 +39,7 @@
 			bounds: L.latLngBounds([38.3682, -75.9374], [43.0329, -71.7187])
 		}).addTo(map);
 		
-		var url_to_geotiff_file = "https://public-webmapping-experimental.s3.amazonaws.com/NYC_2017_LiDAR_LandCover_cog_20231117_4326.tif";
+		var url_to_geotiff_file = "https://public-webmapping-experimental.s3.amazonaws.com/NYC_2017_LiDAR_LandCover_cog_4326.tif";
 
 	  //var url_to_geotiff_file = "NYC_2017_LiDAR_LandCover_cog_20231117_4326.tif";
 
@@ -58,7 +58,7 @@
             attribution: "City of New York",
             georaster: georaster,
             opacity: 0.5,
-            resolution: 128,
+            resolution: 256,
             pixelValuesToColorFn: 
 					function(pixelValues){
 						var pixelValue = pixelValues[0];

@@ -19,7 +19,7 @@
     <script src="https://unpkg.com/leaflet@latest/dist/leaflet.js"></script>
     <script src="https://unpkg.com/georaster"></script>
     <script src="https://unpkg.com/georaster-layer-for-leaflet"></script>
-	<script src="https://unpkg.com/protomaps@latest/dist/protomaps.min.js"></script>
+	<script src="https://unpkg.com/protomaps-leaflet@4.0.1/dist/protomaps-leaflet.js"></script>
 
     <script>
       // initalize leaflet map
@@ -65,7 +65,7 @@ let PAINT_RULES = [
 
 let LABEL_RULES = []; // ignore for now
 
-var practcanopy = protomaps.leafletLayer({
+var practcanopy = protomapsL.leafletLayer({
     url:'https://public-webmapping-experimental.s3.us-east-1.amazonaws.com/nyc_practicalcanopy.pmtiles',
     paint_rules:PAINT_RULES,
     label_rules:LABEL_RULES

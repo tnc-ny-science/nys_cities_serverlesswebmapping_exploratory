@@ -59,7 +59,7 @@ var layer = protomaps.leafletLayer({url:'nyc_practicalcanopy.pmtiles'})
 let PAINT_RULES = [
     {
         dataLayer:"practcanopy",
-        symbolizer:new protomaps.PolygonSymbolizer({fill:"#0096FF"})
+        symbolizer:new protomapsL.PolygonSymbolizer({fill:"#0096FF"})
     } 
 ];
 
@@ -73,17 +73,17 @@ var practcanopy = protomapsL.leafletLayer({
 
 
 var baseLayers = {
-    "Basemap": basemap,
-    "Imagery": imagery2018,
+    "Basemap": basemap,
+    "Imagery": imagery2018,
 };
 
 var overlays = {
-    "Practical Canopy": practcanopy
-    };
+    "Practical Canopy": practcanopy
+    };
 
 L.control.layers(
-	baseLayers,
 	overlays,
+	baseLayers,
 	{collapsed:false}).addTo(map);
 		
 </script>
